@@ -15,10 +15,9 @@ import com.viewhigh.example.composeapp.model.entity.NavigationItem
  *
  * @author:  Liu XueFei
  * @email:   liuxuefei@viewhigh.com
- * @date:    2022/3/28 13:02
+ * @date:    2022/4/20 14:23
  *
  */
-
 
 @Composable
 fun MainFrame() {
@@ -66,5 +65,3 @@ fun MainFrame() {
 fun MainFramePreview() {
     MainFrame()
 }
-
-
