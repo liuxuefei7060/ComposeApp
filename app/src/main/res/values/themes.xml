@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.ComposeApp" parent="android:Theme.Material.Light.NoActionBar">
+        <!--设置状态栏的背景色-->
         <item name="android:statusBarColor">@color/primary</item>
     </style>
 </resources>
