@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 
 @Composable
-fun MineScreen(statusBarHeight: Int) {
-    TopAppBar(statusBarHeight) {
+fun MineScreen() {
+    TopAppBar() {
         Text(text = "我的")
     }
 

@@ -20,7 +20,7 @@ import com.viewhigh.example.composeapp.model.entity.NavigationItem
  */
 
 @Composable
-fun MainFrame(statusBarHeight: Int) {
+fun MainFrame() {
 
     val navigationItems = listOf(
         NavigationItem(title = "学习", icon = Icons.Filled.Home),
@@ -55,9 +55,9 @@ fun MainFrame(statusBarHeight: Int) {
         },
     ) {
         when (currentNavigationIndex) {
-            0 -> StudyScreen(statusBarHeight)
-            1 -> TaskScreen(statusBarHeight)
-            2 -> MineScreen(statusBarHeight)
+            0 -> StudyScreen()
+            1 -> TaskScreen()
+            2 -> MineScreen()
         }
     }
 }
@@ -66,5 +66,5 @@ fun MainFrame(statusBarHeight: Int) {
 @Preview
 @Composable
 fun MainFramePreview() {
-    MainFrame(20)
+    MainFrame()
 }

@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.insets.systemBarsPadding
 import com.viewhigh.example.composeapp.ui.theme.Blue200
 import com.viewhigh.example.composeapp.ui.theme.Blue700
 
@@ -24,13 +25,13 @@ import com.viewhigh.example.composeapp.ui.theme.Blue700
  */
 
 @Composable
-fun TopAppBar(statusBarHeight: Int, content: @Composable () -> Unit) {
+fun TopAppBar(content: @Composable () -> Unit) {
 
 
     //标题栏高度
-    val statusBarHeightDp = with(LocalDensity.current) {
-        statusBarHeight.toDp()
-    }
+//    val statusBarHeightDp = with(LocalDensity.current) {
+//        statusBarHeight.toDp()
+//    }
     val appBarHeight = 56.dp
 
     Row(
@@ -43,9 +44,9 @@ fun TopAppBar(statusBarHeight: Int, content: @Composable () -> Unit) {
                     )
                 )
             )
+            .systemBarsPadding()
             .fillMaxWidth()
-            .height(appBarHeight + statusBarHeightDp)
-            .padding(top = statusBarHeightDp),
+            .height(appBarHeight),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -57,7 +58,7 @@ fun TopAppBar(statusBarHeight: Int, content: @Composable () -> Unit) {
 @Preview
 @Composable
 fun TopAppBarPreview() {
-    TopAppBar(30) {
+    TopAppBar() {
         Text("标题")
     }
 }

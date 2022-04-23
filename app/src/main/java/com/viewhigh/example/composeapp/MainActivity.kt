@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.viewhigh.example.composeapp.ui.screens.MainFrame
 import com.viewhigh.example.composeapp.ui.theme.ComposeAppTheme
@@ -24,12 +25,12 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         //获取statusBar高度
-        var statusBarHeight = 0
-        val resId = resources.getIdentifier("status_bar_height", "dimen", "android")
-
-        if (resId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resId)
-        }
+//        var statusBarHeight = 0
+//        val resId = resources.getIdentifier("status_bar_height", "dimen", "android")
+//
+//        if (resId > 0) {
+//            statusBarHeight = resources.getDimensionPixelSize(resId)
+//        }
 
         setContent {
             //设置状态栏透明：第2步
@@ -41,14 +42,15 @@ class MainActivity : ComponentActivity() {
             }
 
             ComposeAppTheme {
-
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
+                ProvideWindowInsets() {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
 //                    Greeting("Android")
-                    MainFrame(statusBarHeight = statusBarHeight)
+                        MainFrame()
+                    }
                 }
             }
         }

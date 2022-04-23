@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 
 @Composable
-fun TaskScreen(statusBarHeight: Int) {
-    TopAppBar(statusBarHeight) {
+fun TaskScreen() {
+    TopAppBar() {
         Text(text = "任务")
     }
 }

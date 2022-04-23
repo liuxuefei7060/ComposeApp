@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 
 @Composable
-fun StudyScreen(statusBarHeight: Int) {
-    TopAppBar(statusBarHeight) {
+fun StudyScreen() {
+    TopAppBar() {
         Text(text = "学习")
     }
 }

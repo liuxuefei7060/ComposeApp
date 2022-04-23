@@ -53,7 +53,10 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
-    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.24.7-alpha'
+    //1.1.1的compose与0.23.1版本的accompanist搭配
+    //compose继续升级，instets的相关api会合并到compose中
+    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.23.1'
+    implementation 'com.google.accompanist:accompanist-insets:0.23.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
