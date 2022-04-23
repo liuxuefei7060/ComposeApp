@@ -46,6 +46,7 @@ fun TopAppBar(content: @Composable () -> Unit) {
             )
             .systemBarsPadding()
             .fillMaxWidth()
+            .padding(horizontal = 8.dp)
             .height(appBarHeight),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
