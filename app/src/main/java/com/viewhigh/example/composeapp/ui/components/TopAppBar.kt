@@ -44,7 +44,7 @@ fun TopAppBar(content: @Composable () -> Unit) {
                     )
                 )
             )
-            .systemBarsPadding()
+            .systemBarsPadding(start = true, bottom = false)
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
             .height(appBarHeight),
