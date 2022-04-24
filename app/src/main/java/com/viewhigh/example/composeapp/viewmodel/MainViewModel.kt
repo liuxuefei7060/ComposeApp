@@ -1,11 +1,15 @@
 package com.viewhigh.example.composeapp.viewmodel
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.SmartDisplay
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.viewhigh.example.composeapp.model.entity.Category
+import com.viewhigh.example.composeapp.model.entity.DataType
 
 /**
  * desc :
@@ -29,8 +33,21 @@ class MainViewModel : ViewModel() {
     var categoryIndex by mutableStateOf(0)
         private set
 
+    //数据类型
+    val dataTypes = mutableStateListOf(
+        DataType("相关资讯", Icons.Default.Description),
+        DataType("法律法规", Icons.Default.SmartDisplay),
+    )
 
-    fun updateCategoryIndex(index : Int) {
+    //当前数据类型
+    var curDataIndex by mutableStateOf(0)
+        private set
+
+    fun updateDataIndex(index: Int) {
+        curDataIndex = index
+    }
+
+    fun updateCategoryIndex(index: Int) {
         categoryIndex = index
     }
 }

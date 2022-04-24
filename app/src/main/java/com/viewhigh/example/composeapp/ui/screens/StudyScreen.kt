@@ -21,7 +21,7 @@ import com.viewhigh.example.composeapp.ui.components.TopAppBar
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
 
 @Composable
-fun StudyScreen(mainViewModel: MainViewModel = viewModel()) {
+fun StudyScreen(viewModel: MainViewModel = viewModel()) {
 
     Column() {
 
@@ -72,20 +72,42 @@ fun StudyScreen(mainViewModel: MainViewModel = viewModel()) {
         }
 
         TabRow(
-            selectedTabIndex = mainViewModel.categoryIndex,
+            selectedTabIndex = viewModel.categoryIndex,
             backgroundColor = Color(0x22149EE7),
             contentColor = Color(0xFF149EE7)
         ) {
 
-            mainViewModel.categories.forEachIndexed { index, category ->
-                Tab(selected = mainViewModel.categoryIndex == index,
+            viewModel.categories.forEachIndexed { index, category ->
+                Tab(selected = viewModel.categoryIndex == index,
                     selectedContentColor = Color(0xFF149EE7),
                     unselectedContentColor = Color(0xFF666666),
                     onClick = {
-                        mainViewModel.updateCategoryIndex(index = index)
+                        viewModel.updateCategoryIndex(index = index)
                     }) {
                     Text(text = category.title, modifier = Modifier.padding(vertical = 8.dp))
                 }
+            }
+        }
+        //数据类型
+        TabRow(
+            selectedTabIndex = viewModel.curDataIndex,
+            backgroundColor = Color.Transparent,
+            indicator = {},
+            divider = {},
+            contentColor = Color(0xFF149EE7)
+        ) {
+
+            viewModel.dataTypes.forEachIndexed { index, dataType ->
+                LeadingIconTab(selected = viewModel.curDataIndex == index,
+                    selectedContentColor = Color(0xFF149EE7),
+                    unselectedContentColor = Color(0xFF666666),
+                    onClick = {
+                        viewModel.updateDataIndex(index = index)
+                    }, text = {
+                        Text(text = dataType.title, modifier = Modifier.padding(vertical = 8.dp))
+                    }, icon = {
+                        Icon(imageVector = dataType.icon, contentDescription = null)
+                    })
             }
         }
     }
