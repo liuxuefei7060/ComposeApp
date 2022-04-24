@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.viewhigh.example.composeapp.model.entity.Category
 import com.viewhigh.example.composeapp.model.entity.DataType
+import com.viewhigh.example.composeapp.model.entity.SwiperEntity
 
 /**
  * desc :
@@ -42,6 +43,14 @@ class MainViewModel : ViewModel() {
     //当前数据类型
     var curDataIndex by mutableStateOf(0)
         private set
+
+    //数据类型
+    val swiperData = mutableStateListOf(
+        SwiperEntity("https://docs.bughub.icu/compose/assets/banner1.webp"),
+        SwiperEntity("https://docs.bughub.icu/compose/assets/banner2.webp"),
+        SwiperEntity("https://docs.bughub.icu/compose/assets/banner3.webp")
+    )
+
 
     fun updateDataIndex(index: Int) {
         curDataIndex = index
