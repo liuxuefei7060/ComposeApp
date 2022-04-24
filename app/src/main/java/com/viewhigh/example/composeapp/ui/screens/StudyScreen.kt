@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
@@ -18,10 +16,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
+import com.viewhigh.example.composeapp.viewmodel.MainViewModel
 
 @Composable
-fun StudyScreen() {
+fun StudyScreen(mainViewModel: MainViewModel = viewModel()) {
 
     Column() {
 
@@ -69,6 +69,24 @@ fun StudyScreen() {
                 contentDescription = null,
                 tint = Color.White, modifier = Modifier.padding(start = 6.dp)
             )
+        }
+
+        TabRow(
+            selectedTabIndex = mainViewModel.categoryIndex,
+            backgroundColor = Color(0x22149EE7),
+            contentColor = Color(0xFF149EE7)
+        ) {
+
+            mainViewModel.categories.forEachIndexed { index, category ->
+                Tab(selected = mainViewModel.categoryIndex == index,
+                    selectedContentColor = Color(0xFF149EE7),
+                    unselectedContentColor = Color(0xFF666666),
+                    onClick = {
+                        mainViewModel.updateCategoryIndex(index = index)
+                    }) {
+                    Text(text = category.title, modifier = Modifier.padding(vertical = 8.dp))
+                }
+            }
         }
     }
 }
