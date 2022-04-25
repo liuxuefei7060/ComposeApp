@@ -1,6 +1,8 @@
 package com.viewhigh.example.composeapp.ui.screens
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -11,14 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
+import com.viewhigh.example.composeapp.ui.components.SwiperContent
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
 
@@ -115,18 +115,6 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
         }
 
         //轮播图
-        HorizontalPager(
-            count = viewModel.swiperData.size,
-            modifier = Modifier.padding(16.dp).clip(RoundedCornerShape(4.dp))
-        ) { index ->
-            AsyncImage(
-                model = viewModel.swiperData[index].url,
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(7 / 3f),
-                contentScale = ContentScale.Crop
-            )
-        }
+        SwiperContent(viewModel = viewModel)
     }
 }
