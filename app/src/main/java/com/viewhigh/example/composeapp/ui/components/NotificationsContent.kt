@@ -1,24 +1,21 @@
 package com.viewhigh.example.composeapp.ui.components
 
-import android.app.Notification
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.VerticalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
@@ -67,20 +64,22 @@ fun NotificationsContent(viewModel: MainViewModel) {
         state = pagerState,
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 4.dp)
-            .height(40.dp)
+            .height(45.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(Color(0x22149EE7))
     ) { index ->
-        Log.e("SwiperContent", "index = $index   ,  index % size = ${index % actualCount}")
         Row(modifier = Modifier.padding(horizontal = 8.dp)) {
             Text(
-                "通知：",
+                "最新活动：",
+                fontSize = 14.sp,
                 color = Color(0xFF149EE7),
                 overflow = TextOverflow.Ellipsis
             )
             Text(
                 viewModel.notifications[index % actualCount],
                 maxLines = 1,
+                color = Color(0xFF333333),
+                fontSize = 14.sp,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .weight(1f)
@@ -89,6 +88,7 @@ fun NotificationsContent(viewModel: MainViewModel) {
 
             Text(
                 "更多",
+                fontSize = 14.sp,
                 color = Color(0xFF149EE7),
                 overflow = TextOverflow.Ellipsis
             )

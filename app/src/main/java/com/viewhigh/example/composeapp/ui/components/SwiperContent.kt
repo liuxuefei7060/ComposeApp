@@ -1,13 +1,11 @@
 package com.viewhigh.example.composeapp.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -65,7 +63,6 @@ fun SwiperContent(viewModel: MainViewModel) {
             .padding(horizontal = 8.dp)
             .clip(RoundedCornerShape(8.dp))
     ) { index ->
-        Log.e("SwiperContent", "index = $index   ,  index % size = ${index % actualCount}")
         AsyncImage(
             model = viewModel.swiperData[index % actualCount].url,
             contentDescription = null,

@@ -3,6 +3,8 @@ package com.viewhigh.example.composeapp.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -18,14 +20,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.viewhigh.example.composeapp.ui.components.ArticleItem
 import com.viewhigh.example.composeapp.ui.components.NotificationsContent
 import com.viewhigh.example.composeapp.ui.components.SwiperContent
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
+import com.viewhigh.example.composeapp.viewmodel.ArticleViewModel
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun StudyScreen(viewModel: MainViewModel = viewModel()) {
+fun StudyScreen(
+    viewModel: MainViewModel = viewModel(),
+    articleViewModel: ArticleViewModel = viewModel()
+) {
 
     Column() {
 
@@ -45,8 +52,7 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
                         imageVector = Icons.Filled.Search,
                         contentDescription = null,
                         tint = Color.White,
-
-                        )
+                    )
                     Text(
                         text = "搜索感兴趣的咨询或课程",
                         fontSize = 12.sp,
@@ -75,6 +81,7 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
             )
         }
 
+        //分类
         TabRow(
             selectedTabIndex = viewModel.categoryIndex,
             backgroundColor = Color(0x22149EE7),
@@ -88,7 +95,11 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
                     onClick = {
                         viewModel.updateCategoryIndex(index = index)
                     }) {
-                    Text(text = category.title, modifier = Modifier.padding(vertical = 8.dp))
+                    Text(
+                        text = category.title,
+                        fontSize = 14.sp,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
                 }
             }
         }
@@ -115,9 +126,18 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
             }
         }
 
-        //轮播图
-        SwiperContent(viewModel = viewModel)
-        //通知
-        NotificationsContent(viewModel = viewModel)
+        LazyColumn() {
+            //轮播图
+            item { SwiperContent(viewModel = viewModel) }
+            //通知
+            item { NotificationsContent(viewModel = viewModel) }
+            //新闻列表
+            items(articleViewModel.list) { article ->
+                ArticleItem(article)
+            }
+        }
+
+
     }
 }
+
