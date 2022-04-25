@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.viewhigh.example.composeapp.ui.components.NotificationsContent
 import com.viewhigh.example.composeapp.ui.components.SwiperContent
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
@@ -116,5 +117,7 @@ fun StudyScreen(viewModel: MainViewModel = viewModel()) {
 
         //轮播图
         SwiperContent(viewModel = viewModel)
+        //通知
+        NotificationsContent(viewModel = viewModel)
     }
 }
