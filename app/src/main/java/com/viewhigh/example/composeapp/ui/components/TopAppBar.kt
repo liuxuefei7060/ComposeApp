@@ -23,6 +23,7 @@ import com.viewhigh.example.composeapp.ui.theme.Blue700
  * @date:    2022/4/22 12:48
  *
  */
+val appBarHeight = 56.dp
 
 @Composable
 fun TopAppBar(content: @Composable () -> Unit) {
@@ -32,7 +33,6 @@ fun TopAppBar(content: @Composable () -> Unit) {
 //    val statusBarHeightDp = with(LocalDensity.current) {
 //        statusBarHeight.toDp()
 //    }
-    val appBarHeight = 56.dp
 
     Row(
         modifier = Modifier
