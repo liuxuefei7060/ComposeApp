@@ -20,17 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.viewhigh.example.composeapp.ui.components.ArticleItem
-import com.viewhigh.example.composeapp.ui.components.NotificationsContent
-import com.viewhigh.example.composeapp.ui.components.SwiperContent
+import com.viewhigh.example.composeapp.model.entity.VideoEntity
+import com.viewhigh.example.composeapp.ui.components.*
 import com.viewhigh.example.composeapp.ui.components.TopAppBar
 import com.viewhigh.example.composeapp.viewmodel.ArticleViewModel
 import com.viewhigh.example.composeapp.viewmodel.MainViewModel
+import com.viewhigh.example.composeapp.viewmodel.VideoViewModel
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun StudyScreen(
     viewModel: MainViewModel = viewModel(),
+    videoViewModel: VideoViewModel = viewModel(),
     articleViewModel: ArticleViewModel = viewModel()
 ) {
 
@@ -131,10 +132,18 @@ fun StudyScreen(
             item { SwiperContent(viewModel = viewModel) }
             //通知
             item { NotificationsContent(viewModel = viewModel) }
-            //新闻列表
-            items(articleViewModel.list) { article ->
-                ArticleItem(article)
+            if (viewModel.showArticle) {
+                //文章列表
+                items(articleViewModel.list) { article ->
+                    ArticleItem(article)
+                }
+            } else {
+                //视频列表
+                items(videoViewModel.list) { videoEntity ->
+                    VideoItem(videoEntity)
+                }
             }
+
         }
 
 

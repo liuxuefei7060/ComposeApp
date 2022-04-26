@@ -59,10 +59,12 @@ class MainViewModel : ViewModel() {
         "泽连斯基威胁退出俄乌谈判 承认无法从军事夺回马里乌波尔",
         "河南南阳遭遇暴雨 商铺被淹 已启动防汛三级应急响应"
     )
-
+    var showArticle by mutableStateOf(true)
+        private set
 
     fun updateDataIndex(index: Int) {
         curDataIndex = index
+        showArticle = index == 0
     }
 
     fun updateCategoryIndex(index: Int) {

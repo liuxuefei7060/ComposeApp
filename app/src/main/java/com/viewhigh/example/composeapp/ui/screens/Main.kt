@@ -1,11 +1,14 @@
 package com.viewhigh.example.composeapp.ui.screens
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.viewhigh.example.composeapp.model.entity.NavigationItem
@@ -54,11 +57,14 @@ fun MainFrame() {
             }
         },
     ) {
-        when (currentNavigationIndex) {
-            0 -> StudyScreen()
-            1 -> TaskScreen()
-            2 -> MineScreen()
+        Box(modifier = Modifier.padding(it)) {
+            when (currentNavigationIndex) {
+                0 -> StudyScreen()
+                1 -> TaskScreen()
+                2 -> MineScreen()
+            }
         }
+
     }
 }
 
