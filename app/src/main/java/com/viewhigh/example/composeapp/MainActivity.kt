@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.viewhigh.example.composeapp.ui.screens.MainFrame
 import com.viewhigh.example.composeapp.ui.theme.ComposeAppTheme
@@ -45,7 +46,9 @@ class MainActivity : ComponentActivity() {
                 ProvideWindowInsets() {
                     // A surface container using the 'background' color from the theme
                     Surface(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .navigationBarsPadding(true),
                         color = MaterialTheme.colors.background
                     ) {
 //                    Greeting("Android")

@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.accompanist.insets.navigationBarsPadding
 import com.viewhigh.example.composeapp.model.entity.NavigationItem
 
 /**
