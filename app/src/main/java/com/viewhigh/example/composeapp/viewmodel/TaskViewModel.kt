@@ -28,4 +28,7 @@ class TaskViewModel : ViewModel() {
     fun updatePointPercent() {
         pointOfYearPercent = 200f * pointOfYear / totalPointOfYear
     }
+
+    //一周积分情况
+    var pointsOfWeek by mutableStateOf(listOf(0f, 2f, 6f, 9.5f, 10f, 15f, 5f))
 }
