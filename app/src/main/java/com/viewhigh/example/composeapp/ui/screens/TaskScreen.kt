@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,6 +39,7 @@ fun TaskScreen(taskVM: TaskViewModel = viewModel()) {
 
     LaunchedEffect(taskVM.pointOfYearPercent) {
         taskVM.updatePointPercent()
+        taskVM.updateTips()
     }
 
     Column(
@@ -164,7 +166,31 @@ fun TaskScreen(taskVM: TaskViewModel = viewModel()) {
                         fontSize = 14.sp, color = Color(0xFF999999)
                     )
                     //积分的折线图
-                    ChartView(taskVM.pointsOfWeek)
+                    ChartView(taskVM.pointsOfWeek, modifier = Modifier.padding(vertical = 8.dp))
+                    //日期
+                    Row() {
+                        taskVM.weeks.forEach {
+                            Text(
+                                text = it,
+                                color = Color(0xff999999),
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
+                    //今日任务提醒
+                    Text(
+                        text = taskVM.tips,
+                        fontSize = 14.sp,
+                        color = Color(0xff149ee7),
+                        modifier = Modifier
+                            .padding(vertical = 12.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(color = Color(0x33149ee7))
+                            .padding(8.dp)
+                            .fillMaxWidth()
+                    )
                 }
             }
         }

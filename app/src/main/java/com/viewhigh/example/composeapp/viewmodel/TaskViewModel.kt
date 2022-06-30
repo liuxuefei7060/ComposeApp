@@ -31,4 +31,30 @@ class TaskViewModel : ViewModel() {
 
     //一周积分情况
     var pointsOfWeek by mutableStateOf(listOf(0f, 2f, 6f, 9.5f, 10f, 15f, 5f))
+
+    var weeks = listOf<String>("02.05", "02.06", "02.07", "02.08", "02.09", "02.10", "今日")
+
+
+    //今日分数
+    private var todayPoint = 0
+    var tips by mutableStateOf("今日获得0积分，快去完成下面任务吧")
+        private set
+
+    /**
+     * 更新任务提醒文字
+     */
+    fun updateTips() {
+
+        tips = when (todayPoint) {
+            0 -> {
+                "今日获得0积分，快去完成下面任务吧"
+            }
+            in 1..14 -> {
+                "今日获得${todayPoint}积分，快去完成下面任务吧"
+            }
+            else -> {
+                "今日获得${todayPoint}积分，已经完成任务"
+            }
+        }
+    }
 }

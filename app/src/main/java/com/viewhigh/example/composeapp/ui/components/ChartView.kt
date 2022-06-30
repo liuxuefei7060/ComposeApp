@@ -1,6 +1,7 @@
 package com.viewhigh.example.composeapp.ui.components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,7 +16,7 @@ import androidx.compose.ui.unit.dp
  * 折线图
  */
 @Composable
-fun ChartView(points: List<Float>) {
+fun ChartView(points: List<Float>, modifier: Modifier) {
 
     //每一行的高度
     val heightForRow = 24
@@ -29,13 +30,13 @@ fun ChartView(points: List<Float>) {
     //画布的宽度 = 屏幕宽度 - padding * 2
     val canvasWidth = LocalConfiguration.current.screenWidthDp - 8 * 2
 
-    var perY = 8  //24
+    val perY = 8  //24
     //7平分的宽度
     val averageOfWidth = canvasWidth / 7
     //画布的高度
     val canvasHeight = heightForRow * countForRow + circleRadius * 2
     Canvas(
-        modifier = Modifier.size(
+        modifier = modifier.size(
             width = canvasWidth.dp,
             height = canvasHeight.dp
         )
@@ -58,7 +59,22 @@ fun ChartView(points: List<Float>) {
                 center = circleCenter,
                 style = Stroke(4f)
             )
+
+            if (index < points.count() - 1) {
+                val nextPointCenter = Offset(
+                    (averageOfWidth * (index + 1) + averageOfWidth / 2).dp.toPx(),
+                    (heightForRow * countForRow - points[(index + 1)] * perY + circleRadius).dp.toPx()
+                )
+                drawLine(
+                    Color(0xFF149EE7),
+                    start = circleCenter,
+                    end = nextPointCenter,
+                    strokeWidth = 5f
+                )
+            }
         }
+        
+
 
     }
 
